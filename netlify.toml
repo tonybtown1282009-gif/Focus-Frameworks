@@ -1,0 +1,79 @@
+# =========================================================
+# Focus Frameworks — Netlify Configuration
+# Static site, no build step. Publishes from repo root.
+# =========================================================
+
+[build]
+  publish = "."
+  command = ""
+
+# ---------- Clean URLs → page files ----------
+# Order matters: most specific first.
+
+[[redirects]]
+  from = "/"
+  to = "/src/pages/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/agency"
+  to = "/src/pages/agency.html"
+  status = 200
+
+[[redirects]]
+  from = "/products"
+  to = "/src/pages/digital.html"
+  status = 200
+
+[[redirects]]
+  from = "/digital"
+  to = "/src/pages/digital.html"
+  status = 200
+
+[[redirects]]
+  from = "/detailing"
+  to = "/src/pages/detailing.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/src/pages/contact.html"
+  status = 200
+
+# ---------- 404 fallback ----------
+[[redirects]]
+  from = "/*"
+  to = "/src/pages/404.html"
+  status = 404
+
+# ---------- Cache headers ----------
+# Long-lived caching for fingerprintable assets, sensible defaults for HTML.
+
+[[headers]]
+  for = "/public/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/src/styles/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+[[headers]]
+  for = "/src/scripts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=86400, must-revalidate"
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+    X-Frame-Options = "SAMEORIGIN"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+
+[[headers]]
+  for = "/favicon.svg"
+  [headers.values]
+    Cache-Control = "public, max-age=604800"

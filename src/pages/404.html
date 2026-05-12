@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found — Focus Frameworks</title>
+  <meta name="description" content="The page you're looking for has moved or never existed. Head back to Focus Frameworks." />
+  <meta name="robots" content="noindex, follow" />
+
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="/src/styles/tokens.css" />
+  <link rel="stylesheet" href="/src/styles/reset.css" />
+  <link rel="stylesheet" href="/src/styles/global.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+
+  <style>
+    .not-found {
+      min-height: 100svh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: var(--space-7) var(--container-pad);
+      background:
+        radial-gradient(ellipse 60% 50% at 50% 0%, var(--color-primary-50), transparent 70%),
+        var(--color-bg);
+      position: relative;
+      isolation: isolate;
+    }
+    .not-found::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(to right, rgba(37, 99, 235, 0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(37, 99, 235, 0.06) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse at center, black, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 70%);
+    }
+    .not-found-code {
+      font-family: var(--font-display);
+      font-size: clamp(6rem, 4rem + 12vw, 12rem);
+      font-weight: var(--font-weight-black);
+      letter-spacing: var(--letter-spacing-tight);
+      line-height: 1;
+      color: var(--color-primary);
+      margin-bottom: var(--space-4);
+    }
+    .not-found h1 {
+      font-size: var(--font-size-3xl);
+      margin-bottom: var(--space-4);
+    }
+    .not-found p {
+      font-size: var(--font-size-md);
+      max-width: 48ch;
+      margin-bottom: var(--space-6);
+    }
+    .not-found-ctas {
+      display: flex;
+      gap: var(--space-3);
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: var(--space-8);
+    }
+    .not-found-links {
+      display: flex;
+      gap: var(--space-5);
+      flex-wrap: wrap;
+      justify-content: center;
+      font-size: var(--font-size-sm);
+    }
+    .not-found-links a {
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+    }
+    .not-found-links a:hover { color: var(--color-primary); }
+  </style>
+</head>
+<body>
+  <main class="not-found">
+    <div class="not-found-code">404</div>
+    <h1>This page took a wrong turn.</h1>
+    <p>The page you're looking for moved, was renamed, or never existed. No harm done — let's get you somewhere useful.</p>
+
+    <div class="not-found-ctas">
+      <a href="/" class="btn btn-primary btn-lg">Back to Home</a>
+      <a href="/contact" class="btn btn-ghost btn-lg">Contact us</a>
+    </div>
+
+    <nav aria-label="Quick links" class="not-found-links">
+      <a href="/agency">Web Design Agency</a>
+      <a href="/products">Digital Products</a>
+      <a href="/detailing">Car Detailing</a>
+    </nav>
+  </main>
+</body>
+</html>
