@@ -37,21 +37,23 @@ In a new session, say: **"continue Focus Frameworks Part N"** (where N is the ne
 
 ---
 
-## Part 2 — Landing Page (Phase 3)
+## Part 2 — Landing Page (Phase 3) ✅ COMPLETE
 
-- [ ] `index.html` at `/src/pages/index.html`
-  - [ ] Sticky nav with logo, links, CTA — mobile hamburger sheet
-  - [ ] Hero — "Build. Sell. Detail." headline + subheadline + 2 CTAs + geometric bg
-  - [ ] Three vertical cards (Agency / Digital / Detailing)
-  - [ ] "Why Focus Frameworks" 4 features
-  - [ ] Testimonials (3 realistic placeholders)
-  - [ ] CTA banner (navy)
-  - [ ] Footer
-- [ ] `/src/scripts/main.js` — entry, IntersectionObserver setup
-- [ ] `/src/scripts/nav.js` — mobile menu toggle, active link logic
-- [ ] `/src/scripts/animations.js` — reveal-on-scroll
-- [ ] `/src/components/nav.html` — reusable nav partial
-- [ ] `/src/components/footer.html` — reusable footer partial
+- [x] `index.html` at `/src/pages/index.html`
+  - [x] Sticky nav with logo, links, CTA — mobile hamburger sheet
+  - [x] Hero — "Build. Sell. Detail." headline + subheadline + 2 CTAs + geometric SVG visual + stats strip
+  - [x] Three vertical cards (Agency / Digital / Detailing)
+  - [x] "Why Focus Frameworks" 4 features
+  - [x] Testimonials (3 realistic placeholders)
+  - [x] CTA banner (navy)
+  - [x] Footer
+- [x] `/src/scripts/main.js` — ES module entry, async component loader
+- [x] `/src/scripts/nav.js` — mobile menu toggle, ESC + outside click close, active link logic, current year
+- [x] `/src/scripts/animations.js` — IntersectionObserver reveal-on-scroll, respects prefers-reduced-motion
+- [x] `/src/components/nav.html` — reusable nav partial (used via data-slot="nav")
+- [x] `/src/components/footer.html` — reusable footer partial (used via data-slot="footer")
+- [x] Open Graph meta tags on index.html
+- [x] Schema.org LocalBusiness JSON-LD on index.html
 
 ---
 
@@ -97,8 +99,8 @@ In a new session, say: **"continue Focus Frameworks Part N"** (where N is the ne
   - [ ] Centered form: Name, Email, Subject dropdown, Message
   - [ ] Contact info cards (email, phone, service area)
   - [ ] Response time expectation copy
-- [ ] OG meta tags on every page
-- [ ] Schema.org LocalBusiness JSON-LD on `index.html`
+- [ ] OG meta tags on every page (index.html done — agency, digital, detailing, contact remaining)
+- [x] Schema.org LocalBusiness JSON-LD on `index.html`
 - [ ] `/sitemap.xml`
 - [ ] `/robots.txt`
 - [ ] Final accessibility pass (WCAG AA contrast, skip-link wired, semantic HTML check)
@@ -131,10 +133,16 @@ In a new session, say: **"continue Focus Frameworks Part N"** (where N is the ne
 │           ├── icon-close.svg
 │           └── icon-arrow.svg
 └── src/
-    ├── components/        (Part 2)
+    ├── components/
+    │   ├── nav.html
+    │   └── footer.html
     ├── pages/
-    │   └── 404.html
-    ├── scripts/           (Part 2)
+    │   ├── 404.html
+    │   └── index.html
+    ├── scripts/
+    │   ├── main.js
+    │   ├── nav.js
+    │   └── animations.js
     └── styles/
         ├── tokens.css
         ├── reset.css

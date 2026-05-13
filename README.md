@@ -15,7 +15,7 @@ Static site. Vanilla HTML, CSS, JS. No build step. Deploys to Netlify by pointin
 This is being built in 6 sessions. See [`PROGRESS.md`](./PROGRESS.md) for the live checklist.
 
 - **Part 1 — Foundation** ✅ done — design tokens, CSS, SVG logo, Netlify config, 404
-- **Part 2 — Landing page** — `index.html` + reusable nav/footer + JS
+- **Part 2 — Landing page** ✅ done — `index.html` + reusable nav/footer + JS, OG tags, JSON-LD
 - **Part 3 — Agency page**
 - **Part 4 — Digital products page**
 - **Part 5 — Detailing page**
