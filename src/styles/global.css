@@ -237,6 +237,9 @@ select:focus-visible,
   .show-mobile { display: initial; }
 }
 
+/* Generic visibility toggle (used by filters and other JS-driven UI) */
+.is-hidden { display: none !important; }
+
 /* ---------- Selection ---------- */
 ::selection {
   background: var(--color-primary);

@@ -17,7 +17,7 @@ This is being built in 6 sessions. See [`PROGRESS.md`](./PROGRESS.md) for the li
 - **Part 1 — Foundation** ✅ done — design tokens, CSS, SVG logo, Netlify config, 404
 - **Part 2 — Landing page** ✅ done — `index.html` + reusable nav/footer + JS, OG tags, JSON-LD
 - **Part 3 — Agency page** ✅ done — `agency.html` with pricing, process, portfolio, lead form, FAQ
-- **Part 4 — Digital products page**
+- **Part 4 — Digital products page** ✅ done — `digital.html` with featured bundle, filter bar, 6 products, lead magnet
 - **Part 5 — Detailing page**
 - **Part 6 — Contact + final polish** (SEO, sitemap, a11y)
 

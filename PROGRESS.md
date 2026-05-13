@@ -70,15 +70,18 @@ In a new session, say: **"continue Focus Frameworks Part N"** (where N is the ne
 
 ---
 
-## Part 4 — Digital Products Page (Phase 5)
+## Part 4 — Digital Products Page (Phase 5) ✅ COMPLETE
 
-- [ ] `digital.html` at `/src/pages/digital.html`
-  - [ ] Hero — "Resources that actually help."
-  - [ ] Featured product hero card
-  - [ ] Category filter bar (All / Productivity / Parenting / Business / Student)
-  - [ ] 6 product cards with `data-product-id` (Gumroad/Lemon Squeezy ready)
-  - [ ] Email capture lead magnet
-- [ ] Filter JS in `/src/scripts/filters.js`
+- [x] `digital.html` at `/src/pages/digital.html`
+  - [x] Hero — "Resources that actually help."
+  - [x] Featured product hero card — "The Focus Frameworks Starter Bundle" $39 (was $62, save $23)
+  - [x] Category filter bar (All / Productivity / Parenting / Business / Student) with aria-pressed
+  - [x] 6 product cards with `data-product-id` + mailto fallback CTAs (Gumroad/Lemon Squeezy ready)
+  - [x] Email capture lead magnet — "Five free tools. No spam."
+  - [x] OG meta + canonical
+- [x] Filter JS in `/src/scripts/filters.js` — generic, multi-group, idempotent
+- [x] `.is-hidden` utility added to global.css
+- [x] main.js wired to init filters
 
 ---
 
@@ -100,7 +103,7 @@ In a new session, say: **"continue Focus Frameworks Part N"** (where N is the ne
   - [ ] Centered form: Name, Email, Subject dropdown, Message
   - [ ] Contact info cards (email, phone, service area)
   - [ ] Response time expectation copy
-- [ ] OG meta tags on every page (index.html, agency.html done — digital, detailing, contact remaining)
+- [ ] OG meta tags on every page (index.html, agency.html, digital.html done — detailing, contact remaining)
 - [x] Schema.org LocalBusiness JSON-LD on `index.html`
 - [ ] `/sitemap.xml`
 - [ ] `/robots.txt`
@@ -140,11 +143,13 @@ In a new session, say: **"continue Focus Frameworks Part N"** (where N is the ne
     ├── pages/
     │   ├── 404.html
     │   ├── agency.html
+    │   ├── digital.html
     │   └── index.html
     ├── scripts/
     │   ├── main.js
     │   ├── nav.js
-    │   └── animations.js
+    │   ├── animations.js
+    │   └── filters.js
     └── styles/
         ├── tokens.css
         ├── reset.css

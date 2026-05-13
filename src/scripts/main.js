@@ -4,6 +4,7 @@
 
 import { initNav } from "/src/scripts/nav.js";
 import { initAnimations } from "/src/scripts/animations.js";
+import { initFilters } from "/src/scripts/filters.js";
 
 async function loadComponent(selector, url) {
   const target = document.querySelector(selector);
@@ -24,6 +25,7 @@ async function boot() {
   ]);
   initNav();
   initAnimations();
+  initFilters();
 }
 
 if (document.readyState === "loading") {
