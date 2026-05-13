@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Web Design Agency — Focus Frameworks</title>
+  <meta name="description" content="Fast, clean websites for local small businesses in NE Ohio. Flat pricing — Starter Site $499, Business Pro $999, Monthly Care $79/mo. Chardon, Painesville, Mentor, Willoughby." />
+
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+  <link rel="canonical" href="https://focusframeworks.com/agency" />
+
+  <meta property="og:title" content="Web Design Agency — Focus Frameworks" />
+  <meta property="og:description" content="Fast, clean websites for local small businesses in NE Ohio. Flat pricing. Real timelines. No upsells." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://focusframeworks.com/agency" />
+  <meta property="og:image" content="https://focusframeworks.com/public/assets/icons/wordmark.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="/src/styles/tokens.css" />
+  <link rel="stylesheet" href="/src/styles/reset.css" />
+  <link rel="stylesheet" href="/src/styles/global.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+
+  <style>
+    [data-slot="nav"] { min-height: var(--nav-height); }
+
+    /* Portfolio mockup card */
+    .work-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: transform var(--transition-base), box-shadow var(--transition-base);
+    }
+    .work-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+    .work-mock {
+      aspect-ratio: 4 / 3;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-border);
+    }
+    .work-mock .chrome {
+      height: 28px;
+      background: var(--color-neutral-100);
+      border-bottom: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      padding-inline: var(--space-3);
+      gap: 6px;
+    }
+    .work-mock .dot {
+      width: 9px;
+      height: 9px;
+      border-radius: var(--radius-full);
+    }
+    .work-mock .body {
+      position: absolute;
+      inset: 28px 0 0 0;
+      padding: var(--space-4);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .work-mock .bar {
+      height: 8px;
+      border-radius: var(--radius-full);
+      background: rgba(15, 23, 42, 0.08);
+    }
+    .work-mock .bar.wide { width: 70%; }
+    .work-mock .bar.short { width: 40%; }
+    .work-mock .bar.tall { height: 60px; border-radius: var(--radius-md); }
+    .work-mock .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+      margin-top: var(--space-2);
+    }
+    .work-mock .tile {
+      height: 50px;
+      border-radius: var(--radius-md);
+    }
+    /* Mockup color variants */
+    .work-mock--auto .bar.tall,
+    .work-mock--auto .tile { background: linear-gradient(135deg, var(--color-primary-100), var(--color-primary-50)); }
+    .work-mock--auto .body { background: var(--color-white); }
+
+    .work-mock--clean .bar.tall,
+    .work-mock--clean .tile { background: linear-gradient(135deg, #D1FAE5, #ECFDF5); }
+    .work-mock--clean .body { background: var(--color-white); }
+
+    .work-mock--tutor .bar.tall,
+    .work-mock--tutor .tile { background: linear-gradient(135deg, #FEF3C7, #FFFBEB); }
+    .work-mock--tutor .body { background: var(--color-white); }
+
+    .work-body {
+      padding: var(--space-5);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .work-body h3 { font-size: var(--font-size-lg); }
+    .work-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-2);
+    }
+    .work-tag {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      color: var(--color-text-muted);
+      padding: 4px 10px;
+      border-radius: var(--radius-full);
+      background: var(--color-surface-alt);
+      border: 1px solid var(--color-border);
+    }
+
+    /* Lead form layout */
+    .lead-section {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: var(--space-7);
+      align-items: start;
+    }
+    @media (max-width: 880px) {
+      .lead-section { grid-template-columns: 1fr; }
+    }
+    .lead-form-wrap {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-6);
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* Lighter card variation for pricing without "most popular" */
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+      align-items: stretch;
+      margin-top: var(--space-5);
+    }
+    @media (max-width: 960px) {
+      .pricing-grid { grid-template-columns: 1fr; max-width: 480px; margin-inline: auto; }
+    }
+
+    /* Subtle hero variant for inner pages */
+    .hero--inner h1 { max-width: 22ch; }
+  </style>
+</head>
+<body>
+  <a class="skip-to-content" href="#main">Skip to content</a>
+
+  <div data-slot="nav"></div>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero hero--inner">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container">
+        <span class="hero-eyebrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle></svg>
+          NE Ohio · Chardon · Painesville · Mentor · Willoughby
+        </span>
+        <h1>We build websites that work.</h1>
+        <p class="lead">Fast, clean, conversion-focused sites for local small businesses. Flat pricing. Real timelines. No monthly upsells you don't need — just a site you're proud to send people to.</p>
+        <div class="hero-ctas">
+          <a href="#start" class="btn btn-primary btn-lg">Start a project</a>
+          <a href="#pricing" class="btn btn-ghost btn-lg">See pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PRICING ============ -->
+    <section class="section section-alt" id="pricing">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow">Plans</span>
+          <h2>Flat pricing. No surprises.</h2>
+          <p class="lead" style="margin-inline:auto;">Pick the plan that fits where you are today. Every site we build is hand-coded, accessible, and yours to keep.</p>
+        </header>
+
+        <div class="pricing-grid">
+          <!-- Starter -->
+          <article class="card card-price reveal">
+            <header>
+              <h3>Starter Site</h3>
+              <p style="margin-top: var(--space-2); font-size: var(--font-size-sm);">For solo operators and single-service shops getting online for real.</p>
+              <div class="price">
+                <span class="amount">$499</span>
+                <span class="term">flat · one-time</span>
+              </div>
+            </header>
+            <ul role="list">
+              <li>One-page or simple 3-page site</li>
+              <li>Mobile-first responsive design</li>
+              <li>Contact form (email-routed)</li>
+              <li>SEO basics — meta, sitemap, OG tags</li>
+              <li>2 design revisions included</li>
+              <li>Launch in 7–10 days</li>
+            </ul>
+            <a href="#start" class="btn btn-ghost btn-block" data-plan="starter">Get the Starter</a>
+          </article>
+
+          <!-- Business Pro (featured) -->
+          <article class="card card-price is-featured reveal">
+            <header>
+              <h3>Business Pro</h3>
+              <p style="margin-top: var(--space-2); font-size: var(--font-size-sm);">For established local businesses ready to look the part and convert.</p>
+              <div class="price">
+                <span class="amount">$999</span>
+                <span class="term">flat · one-time</span>
+              </div>
+            </header>
+            <ul role="list">
+              <li>Up to 6 pages (Home, About, Services, Work, Contact, Blog setup)</li>
+              <li>Custom design system, not a template</li>
+              <li>Lead capture forms + email routing</li>
+              <li>Google Maps, hours, click-to-call</li>
+              <li>On-page SEO + analytics setup</li>
+              <li>3 design revisions included</li>
+              <li>Launch in 14–21 days</li>
+            </ul>
+            <a href="#start" class="btn btn-primary btn-block" data-plan="business-pro">Build the Pro</a>
+          </article>
+
+          <!-- Monthly Care -->
+          <article class="card card-price reveal">
+            <header>
+              <h3>Monthly Care</h3>
+              <p style="margin-top: var(--space-2); font-size: var(--font-size-sm);">Keep your site fresh, secure, and fast — no lift required from you.</p>
+              <div class="price">
+                <span class="amount">$79</span>
+                <span class="term">/ month · cancel anytime</span>
+              </div>
+            </header>
+            <ul role="list">
+              <li>Content updates — up to 2 hr / month</li>
+              <li>Hosting + SSL + daily backups</li>
+              <li>Security patches + uptime monitoring</li>
+              <li>Quarterly performance check-up</li>
+              <li>Priority email support</li>
+              <li>Pause or cancel any month</li>
+            </ul>
+            <a href="#start" class="btn btn-ghost btn-block" data-plan="care">Subscribe</a>
+          </article>
+        </div>
+
+        <p class="text-center text-muted" style="margin-top: var(--space-6); font-size: var(--font-size-sm);">Need something bigger? <a href="/contact" style="color: var(--color-primary); font-weight: var(--font-weight-semibold);">Let's talk custom.</a></p>
+      </div>
+    </section>
+
+    <!-- ============ PROCESS ============ -->
+    <section class="section">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow">How it goes</span>
+          <h2>Four steps. No mystery.</h2>
+          <p class="lead" style="margin-inline:auto;">From first call to live site — here's exactly what to expect and roughly when.</p>
+        </header>
+
+        <div class="timeline">
+          <div class="timeline-step reveal">
+            <span class="step-num">1</span>
+            <h4>Discovery</h4>
+            <p>30-minute call. We listen to what you do, who you serve, and what's not working today. You get a written brief back — no surprises later.</p>
+          </div>
+          <div class="timeline-step reveal">
+            <span class="step-num">2</span>
+            <h4>Design</h4>
+            <p>One clear design direction — not three options that confuse you. Built around your real content and your real customers.</p>
+          </div>
+          <div class="timeline-step reveal">
+            <span class="step-num">3</span>
+            <h4>Build</h4>
+            <p>Hand-coded HTML, CSS, JS. No bloated builders, no plugins you'll never use. Fast, accessible, SEO-ready out of the gate.</p>
+          </div>
+          <div class="timeline-step reveal">
+            <span class="step-num">4</span>
+            <h4>Launch</h4>
+            <p>We push to production, point your domain, and walk you through everything. You own the site and the code. Forever.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ PORTFOLIO ============ -->
+    <section class="section section-alt">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow">Recent work</span>
+          <h2>Sites built for local business.</h2>
+          <p class="lead" style="margin-inline:auto;">A few of the local businesses we've helped get online or get a real refresh.</p>
+        </header>
+
+        <div class="grid-3">
+          <article class="work-card reveal">
+            <div class="work-mock work-mock--auto" aria-hidden="true">
+              <div class="chrome">
+                <span class="dot" style="background:#EF4444"></span>
+                <span class="dot" style="background:#F59E0B"></span>
+                <span class="dot" style="background:#10B981"></span>
+              </div>
+              <div class="body">
+                <div class="bar wide"></div>
+                <div class="bar short"></div>
+                <div class="bar tall"></div>
+                <div class="grid">
+                  <div class="tile"></div>
+                  <div class="tile"></div>
+                </div>
+              </div>
+            </div>
+            <div class="work-body">
+              <h3>Chardon Auto Repair</h3>
+              <p style="font-size: var(--font-size-sm);">Service-area shop that needed a credibility refresh and more phone calls. Site delivered in 12 days; calls up week one.</p>
+              <div class="work-tags">
+                <span class="work-tag">Business Pro</span>
+                <span class="work-tag">Service business</span>
+                <span class="work-tag">6 pages</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-mock work-mock--clean" aria-hidden="true">
+              <div class="chrome">
+                <span class="dot" style="background:#EF4444"></span>
+                <span class="dot" style="background:#F59E0B"></span>
+                <span class="dot" style="background:#10B981"></span>
+              </div>
+              <div class="body">
+                <div class="bar wide"></div>
+                <div class="bar tall"></div>
+                <div class="bar short"></div>
+                <div class="grid">
+                  <div class="tile"></div>
+                  <div class="tile"></div>
+                </div>
+              </div>
+            </div>
+            <div class="work-body">
+              <h3>Lake County Cleaning Co.</h3>
+              <p style="font-size: var(--font-size-sm);">Residential cleaning business launching online. Built around booking and an "instant quote" CTA.</p>
+              <div class="work-tags">
+                <span class="work-tag">Business Pro</span>
+                <span class="work-tag">Booking flow</span>
+                <span class="work-tag">4 pages</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="work-card reveal">
+            <div class="work-mock work-mock--tutor" aria-hidden="true">
+              <div class="chrome">
+                <span class="dot" style="background:#EF4444"></span>
+                <span class="dot" style="background:#F59E0B"></span>
+                <span class="dot" style="background:#10B981"></span>
+              </div>
+              <div class="body">
+                <div class="bar wide"></div>
+                <div class="bar short"></div>
+                <div class="bar tall"></div>
+                <div class="grid">
+                  <div class="tile"></div>
+                  <div class="tile"></div>
+                </div>
+              </div>
+            </div>
+            <div class="work-body">
+              <h3>Maple Ridge Tutoring</h3>
+              <p style="font-size: var(--font-size-sm);">Independent tutor needed a simple, parent-friendly site to capture lesson inquiries — Starter Site, launched in 9 days.</p>
+              <div class="work-tags">
+                <span class="work-tag">Starter Site</span>
+                <span class="work-tag">Education</span>
+                <span class="work-tag">3 pages</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ LEAD CAPTURE ============ -->
+    <section class="section" id="start">
+      <div class="container">
+        <div class="lead-section">
+          <div>
+            <span class="eyebrow">Quick start</span>
+            <h2 style="font-size: var(--font-size-3xl); margin-bottom: var(--space-4);">Tell us what you need.</h2>
+            <p>A few details and we'll reply within 48 hours — usually within one business day. No phone tree, no sales pitch.</p>
+            <ul role="list" class="stack-3" style="margin-top: var(--space-5); list-style: none;">
+              <li style="display:flex; align-items:flex-start; gap: var(--space-3); color: var(--color-text-muted);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary); flex-shrink:0; margin-top: 2px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Flat-fee quote within one business day</span>
+              </li>
+              <li style="display:flex; align-items:flex-start; gap: var(--space-3); color: var(--color-text-muted);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary); flex-shrink:0; margin-top: 2px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>You keep the code, the content, and the domain</span>
+              </li>
+              <li style="display:flex; align-items:flex-start; gap: var(--space-3); color: var(--color-text-muted);">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--color-primary); flex-shrink:0; margin-top: 2px;" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Local-owned. We work with our neighbors.</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="lead-form-wrap">
+            <form class="form" action="mailto:hello@focusframeworks.com?subject=Agency%20Inquiry" method="post" enctype="text/plain" aria-label="Agency project inquiry">
+              <div class="form-row">
+                <div class="form-field">
+                  <label for="name">Name</label>
+                  <input id="name" name="name" type="text" required autocomplete="name" placeholder="Your name" />
+                </div>
+                <div class="form-field">
+                  <label for="business">Business</label>
+                  <input id="business" name="business" type="text" autocomplete="organization" placeholder="Your business name" />
+                </div>
+              </div>
+
+              <div class="form-field">
+                <label for="email">Email</label>
+                <input id="email" name="email" type="email" required autocomplete="email" placeholder="you@business.com" />
+              </div>
+
+              <div class="form-field">
+                <label for="plan">Plan you're interested in</label>
+                <select id="plan" name="plan">
+                  <option value="not-sure">Not sure yet — recommend something</option>
+                  <option value="starter">Starter Site — $499</option>
+                  <option value="business-pro">Business Pro — $999</option>
+                  <option value="care">Monthly Care — $79/mo</option>
+                  <option value="custom">Custom / bigger project</option>
+                </select>
+              </div>
+
+              <div class="form-field">
+                <label for="needs">What you need</label>
+                <textarea id="needs" name="needs" required placeholder="A few sentences about your business and what you're looking for. Existing site? Industry? Timeline?"></textarea>
+                <span class="form-help">No wrong answers. We'll follow up with the right questions.</span>
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-lg">Send inquiry</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FAQ ============ -->
+    <section class="section section-alt">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow">FAQ</span>
+          <h2>Questions, answered.</h2>
+        </header>
+
+        <div class="faq">
+          <details>
+            <summary>How long does a site really take?</summary>
+            <p>Starter Sites typically launch in 7–10 days. Business Pro builds are 14–21 days from kickoff. We give you a firm timeline after the discovery call so you can plan around it.</p>
+          </details>
+
+          <details>
+            <summary>Do I own the site after launch?</summary>
+            <p>Yes — completely. Code, content, and domain are yours. We hand you the keys and you can take the site anywhere, anytime. No lock-in, ever.</p>
+          </details>
+
+          <details>
+            <summary>Can I update the site myself after launch?</summary>
+            <p>Absolutely. We hand off clear instructions for the common stuff (text, images, hours). For bigger changes, our Monthly Care Plan covers up to 2 hours of updates per month — or you can hire us per-project.</p>
+          </details>
+
+          <details>
+            <summary>What about hosting?</summary>
+            <p>You can host anywhere. We recommend (and use) Netlify — it's fast, secure, and often free for small business traffic. Monthly Care Plan customers get hosting handled for them.</p>
+          </details>
+
+          <details>
+            <summary>Do you do logos and branding too?</summary>
+            <p>We can. Simple logo refreshes are included in Business Pro on request. For full brand identity work, we partner with a small handful of local designers we trust and price it separately.</p>
+          </details>
+
+          <details>
+            <summary>What if I already have a site I want updated?</summary>
+            <p>Common situation. Send us the link in the form below and we'll tell you honestly whether a refresh or a rebuild makes more sense. Sometimes a rebuild is cheaper in the long run — we'll show you the math.</p>
+          </details>
+
+          <details>
+            <summary>Do you work outside NE Ohio?</summary>
+            <p>Yes, occasionally — but our roots and most of our clients are local. Local clients get priority scheduling and in-person meetings when useful.</p>
+          </details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-slot="footer"></div>
+
+  <script type="module" src="/src/scripts/main.js"></script>
+</body>
+</html>

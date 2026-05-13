@@ -57,15 +57,16 @@ In a new session, say: **"continue Focus Frameworks Part N"** (where N is the ne
 
 ---
 
-## Part 3 — Agency Page (Phase 4)
+## Part 3 — Agency Page (Phase 4) ✅ COMPLETE
 
-- [ ] `agency.html` at `/src/pages/agency.html`
-  - [ ] Hero — "We build websites that work." (NE Ohio focus)
-  - [ ] Services pricing: Starter Site $499, Business Pro $999, Monthly Care $79/mo
-  - [ ] Process timeline (Discovery → Design → Build → Launch)
-  - [ ] Portfolio (3 mock cards)
-  - [ ] Lead capture form (mailto)
-  - [ ] FAQ
+- [x] `agency.html` at `/src/pages/agency.html`
+  - [x] Hero — "We build websites that work." (NE Ohio focus)
+  - [x] Services pricing: Starter Site $499, Business Pro $999 (featured), Monthly Care $79/mo
+  - [x] Process timeline (Discovery → Design → Build → Launch)
+  - [x] Portfolio (3 mock cards with browser-chrome mockups)
+  - [x] Lead capture form (mailto, with plan-selector dropdown)
+  - [x] FAQ (7 questions)
+  - [x] OG meta tags + canonical
 
 ---
 
@@ -99,7 +100,7 @@ In a new session, say: **"continue Focus Frameworks Part N"** (where N is the ne
   - [ ] Centered form: Name, Email, Subject dropdown, Message
   - [ ] Contact info cards (email, phone, service area)
   - [ ] Response time expectation copy
-- [ ] OG meta tags on every page (index.html done — agency, digital, detailing, contact remaining)
+- [ ] OG meta tags on every page (index.html, agency.html done — digital, detailing, contact remaining)
 - [x] Schema.org LocalBusiness JSON-LD on `index.html`
 - [ ] `/sitemap.xml`
 - [ ] `/robots.txt`
@@ -138,6 +139,7 @@ In a new session, say: **"continue Focus Frameworks Part N"** (where N is the ne
     │   └── footer.html
     ├── pages/
     │   ├── 404.html
+    │   ├── agency.html
     │   └── index.html
     ├── scripts/
     │   ├── main.js
