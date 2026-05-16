@@ -1,0 +1,247 @@
+/* =========================================================
+   Focus Frameworks — Global Styles
+   Base typography, layout primitives, utilities.
+   ========================================================= */
+
+html {
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-size: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-normal);
+  color: var(--color-text);
+  background: var(--color-bg);
+  font-weight: var(--font-weight-regular);
+}
+
+/* ---------- Headings ---------- */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: var(--font-weight-bold);
+  line-height: var(--line-height-tight);
+  letter-spacing: var(--letter-spacing-tight);
+  color: var(--color-text);
+}
+
+h1 { font-size: var(--font-size-5xl); }
+h2 { font-size: var(--font-size-4xl); }
+h3 { font-size: var(--font-size-3xl); }
+h4 { font-size: var(--font-size-2xl); }
+h5 { font-size: var(--font-size-xl); }
+h6 { font-size: var(--font-size-lg); }
+
+p {
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text-muted);
+}
+
+p.lead {
+  font-size: var(--font-size-md);
+  color: var(--color-text-muted);
+  max-width: 60ch;
+}
+
+/* ---------- Links ---------- */
+a {
+  color: var(--color-link);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+
+a:hover {
+  color: var(--color-link-hover);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible,
+[tabindex]:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+/* ---------- Layout primitives ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  padding-inline: var(--container-pad);
+}
+
+.section {
+  padding-block: var(--space-9);
+}
+
+.section-sm {
+  padding-block: var(--space-7);
+}
+
+.section-lg {
+  padding-block: var(--space-10);
+}
+
+@media (max-width: 768px) {
+  .section { padding-block: var(--space-8); }
+  .section-lg { padding-block: var(--space-9); }
+}
+
+.section-alt {
+  background: var(--color-bg-alt);
+}
+
+.section-inverse {
+  background: var(--color-bg-inverse);
+  color: var(--color-text-inverse);
+}
+
+.section-inverse h1,
+.section-inverse h2,
+.section-inverse h3,
+.section-inverse h4,
+.section-inverse h5,
+.section-inverse h6 {
+  color: var(--color-text-inverse);
+}
+
+.section-inverse p {
+  color: var(--color-text-inverse-muted);
+}
+
+/* ---------- Section headers ---------- */
+.section-header {
+  text-align: center;
+  max-width: 720px;
+  margin-inline: auto;
+  margin-bottom: var(--space-7);
+}
+
+.section-header.left {
+  text-align: left;
+  margin-inline: 0;
+}
+
+.eyebrow {
+  display: inline-block;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: var(--space-3);
+}
+
+.section-inverse .eyebrow {
+  color: var(--color-primary-300);
+}
+
+/* ---------- Skip link ---------- */
+.skip-to-content {
+  position: absolute;
+  left: var(--space-3);
+  top: var(--space-3);
+  padding: var(--space-2) var(--space-4);
+  background: var(--color-navy);
+  color: var(--color-white);
+  border-radius: var(--radius-md);
+  font-weight: var(--font-weight-semibold);
+  z-index: var(--z-toast);
+  transform: translateY(-200%);
+  transition: transform var(--transition-base);
+}
+
+.skip-to-content:focus {
+  transform: translateY(0);
+  color: var(--color-white);
+}
+
+/* ---------- Scroll-triggered animations ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 500ms var(--ease-out), transform 500ms var(--ease-out);
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---------- Utilities ---------- */
+.text-center { text-align: center; }
+.text-left   { text-align: left; }
+.text-right  { text-align: right; }
+
+.text-balance { text-wrap: balance; }
+.text-pretty  { text-wrap: pretty; }
+
+.text-primary { color: var(--color-primary); }
+.text-muted   { color: var(--color-text-muted); }
+.text-inverse { color: var(--color-text-inverse); }
+
+.bg-alt     { background: var(--color-bg-alt); }
+.bg-inverse { background: var(--color-bg-inverse); color: var(--color-text-inverse); }
+
+.flow > * + * {
+  margin-top: var(--space-4);
+}
+
+.flow-lg > * + * {
+  margin-top: var(--space-5);
+}
+
+/* Stack — vertical rhythm helper */
+.stack-2 > * + * { margin-top: var(--space-2); }
+.stack-3 > * + * { margin-top: var(--space-3); }
+.stack-4 > * + * { margin-top: var(--space-4); }
+.stack-5 > * + * { margin-top: var(--space-5); }
+.stack-6 > * + * { margin-top: var(--space-6); }
+
+/* Cluster — horizontal group */
+.cluster {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+/* Hide/show by breakpoint */
+.hide-mobile { display: initial; }
+.show-mobile { display: none; }
+
+@media (max-width: 768px) {
+  .hide-mobile { display: none !important; }
+  .show-mobile { display: initial; }
+}
+
+/* Generic visibility toggle (used by filters and other JS-driven UI) */
+.is-hidden { display: none !important; }
+
+/* ---------- Selection ---------- */
+::selection {
+  background: var(--color-primary);
+  color: var(--color-white);
+}

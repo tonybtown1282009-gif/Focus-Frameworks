@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Focus Frameworks — Build. Sell. Detail.</title>
+  <meta name="description" content="One team, three crafts. Boutique websites for local businesses, useful digital resources, and meticulous car detailing in NE Ohio." />
+
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+  <link rel="canonical" href="https://focusframeworks.com/" />
+
+  <meta property="og:title" content="Focus Frameworks — Build. Sell. Detail." />
+  <meta property="og:description" content="Boutique websites, useful digital resources, and meticulous car detailing — based in NE Ohio." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://focusframeworks.com/" />
+  <meta property="og:image" content="https://focusframeworks.com/public/assets/icons/wordmark.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="/src/styles/tokens.css" />
+  <link rel="stylesheet" href="/src/styles/reset.css" />
+  <link rel="stylesheet" href="/src/styles/global.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+
+  <style>
+    /* Hero-specific layout */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: var(--space-7);
+      align-items: center;
+    }
+    @media (max-width: 960px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      .hero-visual { display: none; }
+    }
+    .hero-visual {
+      position: relative;
+      aspect-ratio: 1 / 1;
+    }
+    .hero-visual svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    /* Vertical card icon color variations */
+    .card .card-icon { transition: transform var(--transition-base); }
+    .card:hover .card-icon { transform: scale(1.05); }
+
+    /* Why FF feature card — simpler than service card */
+    .feature {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .feature-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: var(--radius-md);
+      background: var(--color-primary-50);
+      color: var(--color-primary);
+    }
+    .feature h3 {
+      font-size: var(--font-size-lg);
+      margin-bottom: 0;
+    }
+    .feature p { font-size: var(--font-size-sm); }
+
+    /* Stats strip */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-5);
+      margin-top: var(--space-7);
+      padding-top: var(--space-6);
+      border-top: 1px solid var(--color-border);
+    }
+    @media (max-width: 600px) {
+      .stats { grid-template-columns: 1fr 1fr; }
+      .stats > :last-child { grid-column: span 2; }
+    }
+    .stat-value {
+      font-family: var(--font-display);
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-black);
+      color: var(--color-text);
+      letter-spacing: var(--letter-spacing-tight);
+      line-height: 1;
+      margin-bottom: var(--space-2);
+    }
+    .stat-label {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-muted);
+    }
+
+    /* Nav slot reserves height to avoid layout shift while loading */
+    [data-slot="nav"] { min-height: var(--nav-height); }
+  </style>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Focus Frameworks",
+    "description": "Multi-vertical brand: web design agency, digital products, and car detailing in NE Ohio.",
+    "url": "https://focusframeworks.com/",
+    "logo": "https://focusframeworks.com/public/assets/icons/wordmark.svg",
+    "image": "https://focusframeworks.com/public/assets/icons/wordmark.svg",
+    "email": "hello@focusframeworks.com",
+    "areaServed": [
+      { "@type": "City", "name": "Chardon" },
+      { "@type": "City", "name": "Painesville" },
+      { "@type": "City", "name": "Mentor" },
+      { "@type": "City", "name": "Willoughby" }
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressRegion": "OH",
+      "addressCountry": "US"
+    },
+    "makesOffer": [
+      { "@type": "Offer", "name": "Web Design Agency", "url": "https://focusframeworks.com/agency" },
+      { "@type": "Offer", "name": "Digital Products", "url": "https://focusframeworks.com/products" },
+      { "@type": "Offer", "name": "Car Detailing", "url": "https://focusframeworks.com/detailing" }
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-to-content" href="#main">Skip to content</a>
+
+  <div data-slot="nav"></div>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="hero-eyebrow">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle></svg>
+              NE Ohio — Boutique, Local, Focused
+            </span>
+            <h1>Build. Sell. Detail.</h1>
+            <p class="lead">Focus Frameworks is one team, three crafts — boutique websites for local businesses, digital resources that actually help, and meticulous car detailing across Chardon, Painesville, Mentor, and Willoughby.</p>
+            <div class="hero-ctas">
+              <a href="/contact" class="btn btn-primary btn-lg">Get Started</a>
+              <a href="#verticals" class="btn btn-ghost btn-lg">See what we do</a>
+            </div>
+
+            <div class="stats">
+              <div>
+                <div class="stat-value">3</div>
+                <div class="stat-label">Verticals, one standard</div>
+              </div>
+              <div>
+                <div class="stat-value">48&nbsp;hr</div>
+                <div class="stat-label">Avg. reply time</div>
+              </div>
+              <div>
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Local-owned, no outsourcing</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-visual" aria-hidden="true">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+              <defs>
+                <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+                  <stop offset="0%" stop-color="#2563EB" stop-opacity="0.15" />
+                  <stop offset="100%" stop-color="#2563EB" stop-opacity="0" />
+                </linearGradient>
+              </defs>
+              <rect width="400" height="400" rx="32" fill="url(#hg)" />
+              <g stroke="#2563EB" stroke-opacity="0.25" stroke-width="1">
+                <line x1="100" y1="0" x2="100" y2="400" />
+                <line x1="200" y1="0" x2="200" y2="400" />
+                <line x1="300" y1="0" x2="300" y2="400" />
+                <line x1="0" y1="100" x2="400" y2="100" />
+                <line x1="0" y1="200" x2="400" y2="200" />
+                <line x1="0" y1="300" x2="400" y2="300" />
+              </g>
+              <g stroke="#2563EB" stroke-width="4" stroke-linecap="round" fill="none">
+                <line x1="50" y1="50" x2="180" y2="180" />
+                <line x1="350" y1="50" x2="220" y2="180" />
+                <line x1="50" y1="350" x2="180" y2="220" />
+                <line x1="350" y1="350" x2="220" y2="220" />
+              </g>
+              <rect x="170" y="170" width="60" height="60" rx="10" fill="#2563EB" />
+              <circle cx="50" cy="50" r="6" fill="#2563EB" />
+              <circle cx="350" cy="50" r="6" fill="#2563EB" />
+              <circle cx="50" cy="350" r="6" fill="#2563EB" />
+              <circle cx="350" cy="350" r="6" fill="#2563EB" />
+            </svg>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ THREE VERTICALS ============ -->
+    <section class="section section-alt" id="verticals">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow">What we do</span>
+          <h2>Three crafts, one standard.</h2>
+          <p class="lead" style="margin-inline:auto;">Pick a starting point. Each side is run with the same care: clean delivery, fair pricing, and answers from a real person.</p>
+        </header>
+
+        <div class="grid-3">
+          <a class="card card-link reveal" href="/agency">
+            <span class="card-icon" aria-hidden="true">
+              <img src="/public/assets/icons/icon-agency.svg" alt="" width="24" height="24" />
+            </span>
+            <h3>Web Design Agency</h3>
+            <p>Fast, clean websites for local small businesses. Flat pricing, real timelines, no monthly upsells you don't need.</p>
+            <span class="btn-link">Explore Agency <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+
+          <a class="card card-link reveal" href="/products">
+            <span class="card-icon" aria-hidden="true">
+              <img src="/public/assets/icons/icon-digital.svg" alt="" width="24" height="24" />
+            </span>
+            <h3>Digital Products</h3>
+            <p>Guides, templates, and dashboards for productivity, parenting, business, and school — built for real life, not perfection.</p>
+            <span class="btn-link">Browse Products <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+
+          <a class="card card-link reveal" href="/detailing">
+            <span class="card-icon" aria-hidden="true">
+              <img src="/public/assets/icons/icon-detailing.svg" alt="" width="24" height="24" />
+            </span>
+            <h3>Car Detailing</h3>
+            <p>Showroom-clean inside and out. Mobile detailing across Chardon, Painesville, Mentor, and Willoughby — booked in minutes.</p>
+            <span class="btn-link">Book Detailing <svg class="arrow" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="13 6 19 12 13 18"></polyline></svg></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ WHY FOCUS FRAMEWORKS ============ -->
+    <section class="section">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow">Why Focus Frameworks</span>
+          <h2>Small enough to care. Sharp enough to deliver.</h2>
+        </header>
+
+        <div class="grid-4">
+          <div class="feature reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </span>
+            <h3>Local first</h3>
+            <p>Based in NE Ohio. We answer the phone, show up on time, and stand behind our work — neighbors, not vendors.</p>
+          </div>
+
+          <div class="feature reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"></rect><rect x="14" y="3" width="7" height="7" rx="1"></rect><rect x="3" y="14" width="7" height="7" rx="1"></rect><rect x="14" y="14" width="7" height="7" rx="1"></rect></svg>
+            </span>
+            <h3>Three crafts, one team</h3>
+            <p>Whichever side you hire us for, you get the same care. No handoffs, no junior team behind the curtain.</p>
+          </div>
+
+          <div class="feature reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9 12l2 2 4-4"></path></svg>
+            </span>
+            <h3>Clean and clear</h3>
+            <p>No clutter, no surprises, no nickel-and-diming. The price you see is the price you pay.</p>
+          </div>
+
+          <div class="feature reveal">
+            <span class="feature-icon" aria-hidden="true">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3 7h7l-5.5 4.5L18 21l-6-4-6 4 1.5-7.5L2 9h7z"></path></svg>
+            </span>
+            <h3>Fair flat pricing</h3>
+            <p>Real prices on real packages. See it before you commit — no "call for quote" runarounds.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ TESTIMONIALS ============ -->
+    <section class="section section-alt">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow">In their words</span>
+          <h2>Quiet confidence from real customers.</h2>
+        </header>
+
+        <div class="grid-3">
+          <article class="testimonial reveal">
+            <p class="testimonial-quote">"They rebuilt our shop site in two weeks and we've gotten more calls in the last month than the previous six combined."</p>
+            <div class="testimonial-author">
+              <span class="testimonial-avatar" aria-hidden="true">MJ</span>
+              <div class="testimonial-meta">
+                <span class="name">Marcus Johnson</span>
+                <span class="role">Owner, Chardon Auto Repair</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial reveal">
+            <p class="testimonial-quote">"Tony's productivity bundle is the only one I've actually finished using. Clean, practical, no fluff — worth every penny."</p>
+            <div class="testimonial-author">
+              <span class="testimonial-avatar" aria-hidden="true">SP</span>
+              <div class="testimonial-meta">
+                <span class="name">Sara Patel</span>
+                <span class="role">Teacher, Willoughby</span>
+              </div>
+            </div>
+          </article>
+
+          <article class="testimonial reveal">
+            <p class="testimonial-quote">"Detailing came out better than the day I bought the car. Pulled into my driveway, gone in three hours, total pro."</p>
+            <div class="testimonial-author">
+              <span class="testimonial-avatar" aria-hidden="true">MR</span>
+              <div class="testimonial-meta">
+                <span class="name">Mike Reyes</span>
+                <span class="role">Customer, Mentor</span>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ CTA BANNER ============ -->
+    <section class="cta-banner">
+      <div class="container">
+        <h2>Ready to focus on what matters?</h2>
+        <p>Pick a starting point. We'll handle the rest — usually back to you within 48 hours.</p>
+        <div class="cluster" style="justify-content:center;">
+          <a href="/contact" class="btn btn-light btn-lg">Get in touch</a>
+          <a href="/agency" class="btn btn-ghost-inverse btn-lg">See pricing</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-slot="footer"></div>
+
+  <script type="module" src="/src/scripts/main.js"></script>
+</body>
+</html>

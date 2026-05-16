@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digital Products — Focus Frameworks</title>
+  <meta name="description" content="Guides, templates, and Notion dashboards that actually help. For productivity, parenting, business, and students. Made by Focus Frameworks." />
+
+  <link rel="icon" type="image/svg+xml" href="/public/favicon.svg" />
+  <link rel="canonical" href="https://focusframeworks.com/products" />
+
+  <meta property="og:title" content="Digital Products — Focus Frameworks" />
+  <meta property="og:description" content="Guides, templates, and Notion dashboards that actually help. For productivity, parenting, business, and students." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://focusframeworks.com/products" />
+  <meta property="og:image" content="https://focusframeworks.com/public/assets/icons/wordmark.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Geist:wght@500;600;700;800&display=swap" />
+
+  <link rel="stylesheet" href="/src/styles/tokens.css" />
+  <link rel="stylesheet" href="/src/styles/reset.css" />
+  <link rel="stylesheet" href="/src/styles/global.css" />
+  <link rel="stylesheet" href="/src/styles/components.css" />
+
+  <style>
+    [data-slot="nav"] { min-height: var(--nav-height); }
+
+    /* Featured product hero card */
+    .featured {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: var(--space-7);
+      align-items: stretch;
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    @media (max-width: 880px) {
+      .featured { grid-template-columns: 1fr; }
+    }
+    .featured-cover {
+      background:
+        linear-gradient(135deg, var(--color-primary), var(--color-primary-700));
+      color: var(--color-white);
+      padding: var(--space-7) var(--space-6);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: var(--space-3);
+      position: relative;
+      overflow: hidden;
+      min-height: 320px;
+    }
+    .featured-cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.08) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse at top right, black, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at top right, black, transparent 70%);
+    }
+    .featured-cover > * { position: relative; }
+    .featured-label {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-2);
+      padding: 4px 12px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius-full);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: var(--letter-spacing-wide);
+      text-transform: uppercase;
+      width: max-content;
+    }
+    .featured-cover h3 {
+      font-size: var(--font-size-3xl);
+      color: var(--color-white);
+      line-height: var(--line-height-tight);
+    }
+    .featured-cover .bundle-note {
+      color: rgba(255,255,255,0.85);
+      font-size: var(--font-size-md);
+      max-width: 36ch;
+    }
+    .featured-body {
+      padding: var(--space-7) var(--space-6);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .featured-body h2 {
+      font-size: var(--font-size-2xl);
+    }
+    .featured-includes {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      list-style: none;
+    }
+    .featured-includes li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      color: var(--color-text-muted);
+      font-size: var(--font-size-sm);
+      line-height: var(--line-height-snug);
+    }
+    .featured-includes li svg {
+      flex-shrink: 0;
+      margin-top: 2px;
+      color: var(--color-primary);
+    }
+    .featured-foot {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+      margin-top: auto;
+      padding-top: var(--space-3);
+    }
+    .featured-price {
+      display: flex;
+      align-items: baseline;
+      gap: var(--space-3);
+    }
+    .featured-price .amount {
+      font-family: var(--font-display);
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-black);
+      color: var(--color-text);
+      line-height: 1;
+    }
+    .featured-price .compare {
+      font-size: var(--font-size-md);
+      color: var(--color-text-muted);
+      text-decoration: line-through;
+    }
+    .featured-price .save {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-success);
+      letter-spacing: var(--letter-spacing-wide);
+      text-transform: uppercase;
+    }
+
+    /* Product cover variations by category */
+    .product-cover[data-cover="productivity"] {
+      background: linear-gradient(135deg, var(--color-primary-100), var(--color-primary-50));
+      color: var(--color-primary-700);
+    }
+    .product-cover[data-cover="parenting"] {
+      background: linear-gradient(135deg, #FCE7F3, #FDF2F8);
+      color: #BE185D;
+    }
+    .product-cover[data-cover="business"] {
+      background: linear-gradient(135deg, #D1FAE5, #ECFDF5);
+      color: #047857;
+    }
+    .product-cover[data-cover="student"] {
+      background: linear-gradient(135deg, #FEF3C7, #FFFBEB);
+      color: #B45309;
+    }
+
+    .product-meta {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      flex-wrap: wrap;
+    }
+
+    /* Email capture */
+    .email-capture {
+      background: var(--color-navy);
+      color: var(--color-white);
+      border-radius: var(--radius-xl);
+      padding: var(--space-8) var(--space-6);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      isolation: isolate;
+    }
+    .email-capture::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background-image:
+        linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(ellipse at center, black, transparent 70%);
+      -webkit-mask-image: radial-gradient(ellipse at center, black, transparent 70%);
+    }
+    .email-capture h2 {
+      color: var(--color-white);
+      margin-bottom: var(--space-3);
+    }
+    .email-capture p {
+      color: var(--color-text-inverse-muted);
+      max-width: 56ch;
+      margin: 0 auto var(--space-6);
+    }
+    .email-form {
+      display: flex;
+      gap: var(--space-3);
+      max-width: 480px;
+      margin: 0 auto;
+    }
+    @media (max-width: 600px) {
+      .email-form { flex-direction: column; }
+    }
+    .email-form input[type="email"] {
+      flex: 1;
+      padding: var(--space-3) var(--space-4);
+      border-radius: var(--radius-md);
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.06);
+      color: var(--color-white);
+      font-family: var(--font-sans);
+      font-size: var(--font-size-base);
+    }
+    .email-form input[type="email"]::placeholder {
+      color: rgba(255,255,255,0.5);
+    }
+    .email-form input[type="email"]:focus {
+      outline: none;
+      border-color: var(--color-primary-300);
+      background: rgba(255,255,255,0.1);
+      box-shadow: 0 0 0 3px rgba(147,197,253,0.25);
+    }
+    .email-fineprint {
+      margin-top: var(--space-4);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-inverse-muted);
+    }
+
+    /* Filter bar centering on inner page */
+    .filter-bar { margin-block: var(--space-6) var(--space-6); }
+  </style>
+</head>
+<body>
+  <a class="skip-to-content" href="#main">Skip to content</a>
+
+  <div data-slot="nav"></div>
+
+  <main id="main">
+    <!-- ============ HERO ============ -->
+    <section class="hero hero--inner">
+      <div class="hero-bg" aria-hidden="true"></div>
+      <div class="container">
+        <span class="hero-eyebrow">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"></circle></svg>
+          Digital products store
+        </span>
+        <h1>Resources that actually help.</h1>
+        <p class="lead">Guides, templates, and Notion dashboards for productivity, parenting, business, and students — made by people who actually use them. Instant download. Pay once, keep forever.</p>
+        <div class="hero-ctas">
+          <a href="#products" class="btn btn-primary btn-lg">Browse Products</a>
+          <a href="#free" class="btn btn-ghost btn-lg">Get free resources</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ FEATURED PRODUCT ============ -->
+    <section class="section">
+      <div class="container">
+        <header class="section-header left">
+          <span class="eyebrow">Featured</span>
+          <h2 style="font-size: var(--font-size-3xl);">The Starter Bundle.</h2>
+          <p style="max-width: 60ch;">Our three flagship resources at one price. Built to work together: one for your day, one for your home, one for your side hustle.</p>
+        </header>
+
+        <article class="featured" data-product-id="ff-starter-bundle">
+          <div class="featured-cover" aria-hidden="true">
+            <span class="featured-label">Bundle · Save 55%</span>
+            <h3>Three systems.<br />One starter price.</h3>
+            <p class="bundle-note">Daily Focus Planner + Parent's Quick Wins + Side-Hustle Launch Kit. Delivered as PDFs and a Notion workspace.</p>
+          </div>
+          <div class="featured-body">
+            <h2>The Focus Frameworks Starter Bundle</h2>
+            <ul class="featured-includes" role="list">
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong style="color: var(--color-text);">The Daily Focus Planner</strong> — 90-day daily planner built around three priorities and a 5pm shutdown ritual</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong style="color: var(--color-text);">Parent's Quick Wins Playbook</strong> — 30 small daily routines that compound across mornings, dinners, and bedtimes</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span><strong style="color: var(--color-text);">Side-Hustle Launch Kit</strong> — Notion dashboard + 4 templates to go from idea to first dollar</span>
+              </li>
+              <li>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lifetime updates as we improve the templates</span>
+              </li>
+            </ul>
+            <div class="featured-foot">
+              <div class="featured-price">
+                <span class="amount">$39</span>
+                <span class="compare">$62</span>
+                <span class="save">Save $23</span>
+              </div>
+              <a class="btn btn-primary btn-lg" href="mailto:hello@focusframeworks.com?subject=Interested%20in%20Starter%20Bundle" data-product-id="ff-starter-bundle">Get the Bundle</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- ============ PRODUCT GRID ============ -->
+    <section class="section section-alt" id="products">
+      <div class="container">
+        <header class="section-header">
+          <span class="eyebrow">The catalog</span>
+          <h2>Pick what you need today.</h2>
+        </header>
+
+        <div class="filter-bar" role="toolbar" aria-label="Filter products by category" data-filter-group data-filter-target="[data-category]">
+          <button type="button" class="filter-btn is-active" data-filter="all" aria-pressed="true">All</button>
+          <button type="button" class="filter-btn" data-filter="productivity" aria-pressed="false">Productivity</button>
+          <button type="button" class="filter-btn" data-filter="parenting" aria-pressed="false">Parenting</button>
+          <button type="button" class="filter-btn" data-filter="business" aria-pressed="false">Business</button>
+          <button type="button" class="filter-btn" data-filter="student" aria-pressed="false">Student</button>
+        </div>
+
+        <div class="grid-3">
+          <article class="product-card reveal" data-category="productivity" data-product-id="ff-daily-focus-planner">
+            <div class="product-cover" data-cover="productivity"><span>The Daily Focus Planner</span></div>
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="badge">Productivity</span>
+                <span class="badge badge-muted">PDF + Notion</span>
+              </div>
+              <h3>The Daily Focus Planner</h3>
+              <p>90-day daily planner built around three priorities, a midday reset, and a 5pm shutdown ritual. Print it or use it in Notion.</p>
+              <div class="product-foot">
+                <span class="product-price">$19</span>
+                <a class="btn btn-primary btn-sm" href="mailto:hello@focusframeworks.com?subject=Interested%20in%20Daily%20Focus%20Planner" data-product-id="ff-daily-focus-planner">Get It</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="parenting" data-product-id="ff-parent-quickwins">
+            <div class="product-cover" data-cover="parenting"><span>Parent's Quick Wins Playbook</span></div>
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="badge">Parenting</span>
+                <span class="badge badge-muted">30-page PDF</span>
+              </div>
+              <h3>Parent's Quick Wins Playbook</h3>
+              <p>Thirty small routines that compound — mornings, dinners, screen time, bedtime. Real, doable wins for busy parents.</p>
+              <div class="product-foot">
+                <span class="product-price">$14</span>
+                <a class="btn btn-primary btn-sm" href="mailto:hello@focusframeworks.com?subject=Interested%20in%20Parent%27s%20Quick%20Wins" data-product-id="ff-parent-quickwins">Get It</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="business" data-product-id="ff-side-hustle-kit">
+            <div class="product-cover" data-cover="business"><span>The Side-Hustle Launch Kit</span></div>
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="badge">Business</span>
+                <span class="badge badge-muted">Notion + Templates</span>
+              </div>
+              <h3>The Side-Hustle Launch Kit</h3>
+              <p>Notion dashboard plus four templates: idea validation, landing page brief, first-customer outreach, and a weekly review.</p>
+              <div class="product-foot">
+                <span class="product-price">$29</span>
+                <a class="btn btn-primary btn-sm" href="mailto:hello@focusframeworks.com?subject=Interested%20in%20Side-Hustle%20Launch%20Kit" data-product-id="ff-side-hustle-kit">Get It</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="student" data-product-id="ff-student-study-system">
+            <div class="product-cover" data-cover="student"><span>The Student Study System</span></div>
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="badge">Student</span>
+                <span class="badge badge-muted">PDF + flashcards</span>
+              </div>
+              <h3>The Student Study System</h3>
+              <p>A simple study rhythm for high schoolers and college students — spaced practice, flashcard templates, and a one-page weekly plan.</p>
+              <div class="product-foot">
+                <span class="product-price">$12</span>
+                <a class="btn btn-primary btn-sm" href="mailto:hello@focusframeworks.com?subject=Interested%20in%20Student%20Study%20System" data-product-id="ff-student-study-system">Get It</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="business" data-product-id="ff-solo-operator-toolkit">
+            <div class="product-cover" data-cover="business"><span>The Solo Operator's Toolkit</span></div>
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="badge">Business</span>
+                <span class="badge badge-muted">6 templates</span>
+              </div>
+              <h3>The Solo Operator's Toolkit</h3>
+              <p>Six templates every one-person business eventually wants: invoice, proposal, client onboarding, weekly review, expense log, retainer agreement.</p>
+              <div class="product-foot">
+                <span class="product-price">$24</span>
+                <a class="btn btn-primary btn-sm" href="mailto:hello@focusframeworks.com?subject=Interested%20in%20Solo%20Operator%20Toolkit" data-product-id="ff-solo-operator-toolkit">Get It</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="product-card reveal" data-category="productivity" data-product-id="ff-sunday-reset">
+            <div class="product-cover" data-cover="productivity"><span>The Sunday Reset Dashboard</span></div>
+            <div class="product-body">
+              <div class="product-meta">
+                <span class="badge">Productivity</span>
+                <span class="badge badge-muted">Notion</span>
+              </div>
+              <h3>The Sunday Reset Dashboard</h3>
+              <p>One Notion page. Weekly review, calendar peek, three priorities, and a tiny gratitude log. Twenty minutes on Sunday changes the whole week.</p>
+              <div class="product-foot">
+                <span class="product-price">$9</span>
+                <a class="btn btn-primary btn-sm" href="mailto:hello@focusframeworks.com?subject=Interested%20in%20Sunday%20Reset%20Dashboard" data-product-id="ff-sunday-reset">Get It</a>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ EMAIL CAPTURE ============ -->
+    <section class="section" id="free">
+      <div class="container">
+        <div class="email-capture">
+          <span class="eyebrow" style="color: var(--color-primary-300);">Free resources</span>
+          <h2>Five free tools. No spam.</h2>
+          <p>Our 1-page daily focus planner, a parent's mornings checklist, a side-hustle idea-validator worksheet, and two more — sent to your inbox, no upsells.</p>
+          <form class="email-form" action="mailto:hello@focusframeworks.com?subject=Free%20Resources%20Request" method="post" enctype="text/plain" aria-label="Free resources signup">
+            <label for="free-email" class="sr-only">Your email address</label>
+            <input id="free-email" name="email" type="email" required autocomplete="email" placeholder="you@email.com" />
+            <button type="submit" class="btn btn-light btn-lg">Send me the bundle</button>
+          </form>
+          <p class="email-fineprint">One email with the links. Unsubscribe anytime. We don't sell or share.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div data-slot="footer"></div>
+
+  <script type="module" src="/src/scripts/main.js"></script>
+</body>
+</html>
